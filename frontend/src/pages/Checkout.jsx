@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import React from 'react';
+import { useCart } from '../context/CartContext';
 
 const Checkout = () => {
-    const { cartItems, clearCart } = useContext(CartContext);
+    const { cartItems, clearCart } = useCart();
 
     const handleCheckout = () => {
         alert('Compra realizada con éxito. ¡Gracias por tu compra!');
