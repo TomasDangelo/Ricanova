@@ -1,18 +1,40 @@
-import React from 'react';
-import styles from './Carousel.module.css'; // Assuming you have a CSS module for styles
+import React, { useState } from 'react';
+import styles from '../styles/Carousel.module.css';
 
-const Carousel = () => {
-    return (
-        <div className={styles.carousel}>
-            <div className={styles.carouselInner}>
-                <div className={`${styles.carouselItem} ${styles.active}`}>Item 1</div>
-                <div className={styles.carouselItem}>Item 2</div>
-                <div className={styles.carouselItem}>Item 3</div>
-            </div>
-            <button className={styles.carouselControlPrev}>‹</button>
-            <button className={styles.carouselControlNext}>›</button>
-        </div>
+const Carousel = ({ images }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  return (
+    <div className={styles.carousel}>
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`${styles.carouselItem} ${
+            index === currentIndex ? styles.active : ''
+          }`}
+          style={{ backgroundImage: `url(${image})` }}
+        />
+      ))}
+      <button className={styles.carouselControlPrev} onClick={handlePrev}>
+        ‹
+      </button>
+      <button className={styles.carouselControlNext} onClick={handleNext}>
+        ›
+      </button>
+    </div>
+  );
 };
 
 export default Carousel;

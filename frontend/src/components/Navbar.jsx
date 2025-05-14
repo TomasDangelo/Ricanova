@@ -10,7 +10,7 @@ const Navbar = () => {
             </div>
             <div className={styles.navbarNavLinks} >
                 <NavLink to="/" className={({isActive}) => isActive? styles.activeLink : styles.link}>
-                    Home
+                    Inicio
                 </NavLink>
                 <NavLink to="/products" className={({isActive}) => isActive? styles.activeLink : styles.link}>
                     Productos
@@ -19,10 +19,10 @@ const Navbar = () => {
                     Carrito
                 </NavLink>
                 <NavLink to="/about" className={({isActive}) => isActive? styles.activeLink : styles.link} >
-                    About
+                    Sobre Nosotros
                 </NavLink>
                 <NavLink to="/contact" className={({isActive}) => isActive? styles.activeLink : styles.link} >
-                    Contact
+                    Contacto
                 </NavLink>
             </div>
         </nav>

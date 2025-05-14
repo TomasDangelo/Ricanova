@@ -16,7 +16,9 @@ const ProductCard = ({ image, title, price, description, category }) => {
                 <p className={styles.productDescription}>{description}</p>
                 <div className={styles.productFooter}>
                     <span className={styles.productPrice}>${price}</span>
-                    <button className={styles.addToCartBtn} onClick={()=> addToCart()}>Add to Cart</button>
+                    <button className={styles.addToCartBtn} onClick={() => addToCart({ image, title, price })}>
+                        Agregar al Carrito
+                    </button>
                 </div>
             </div>
         </div>
