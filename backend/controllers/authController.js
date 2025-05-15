@@ -8,7 +8,7 @@ const generateToken = (user) => {
 };
 
 const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
   try {
     const exists = await User.findOne({ email });
 
@@ -16,9 +16,9 @@ const register = async (req, res) => {
         res.status(401).json({error: "El email ya esta registrado, por favor intente con otro."})
         return
     } 
-    const user = new User({ name, email, password });
+    const user = new User({ email, password });
     await user.save();
-    res.status(201).json({ token: generateToken(user) });
+    res.status(201).json({ message: "Usuario creado correctamente", token: generateToken(user) });
   } catch (err) {
     res.status(400).json({ error: 'Error al registrar usuario' });
   }
@@ -29,7 +29,7 @@ const login = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (user && (await user.matchPassword(password))) {
-      res.json({ token: generateToken(user) });
+      res.json({ message: "Autenticación exitosa!", token: generateToken(user) });
     } else {
       res.status(401).json({ error: 'Credenciales inválidas' });
     }

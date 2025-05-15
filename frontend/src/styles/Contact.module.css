@@ -4,11 +4,11 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  margin: 5rem 0;
-  background-color: #727676;
+  margin-top: 5rem;
+  background-color: #c4cbcb;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+  width: 100%;
   color: #333;
 }
 

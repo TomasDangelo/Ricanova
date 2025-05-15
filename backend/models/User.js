@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
-    name: String,
     email: {type: String, unique: true},
-    password: String,
-    phone: String,
+    password: {type: String, required: true},
+    phone: {type: String, default: null},
     isAdmin: {type: Boolean, default: false}
 })
 
@@ -20,4 +19,5 @@ userSchema.pre('save', async function (next) {
     return await bcrypt.compare(enteredPassword, this.password);
   };
   
-  module.exports = mongoose.model('User', userSchema);
+  //Coleccion users de db con mongo 
+  module.exports = mongoose.model('User', userSchema, 'users');

@@ -1,9 +1,14 @@
-.mainContainer{
-    min-height: 80vh;
-    margin-top: 4rem;
-    padding: 0 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    max-width: 1200px;
+.layoutContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que todo ocupe toda la pantalla */
 }
 
+.mainContainer {
+  flex: 1;
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}

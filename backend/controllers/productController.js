@@ -17,7 +17,17 @@ const getOne = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const product = new Product(req.body);
+    const { name, price, description, category, image, stock } = req.body;
+
+    if (!name || !price || !description || !category || !image) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
+
+    const newProductData = { name, price, description, category, image };
+
+    if (stock !== undefined) newProductData.stock = stock;
+
+    const product = new Product(newProductData);
     await product.save();
     res.status(201).json(product);
   } catch (err) {
@@ -25,9 +35,16 @@ const create = async (req, res) => {
   }
 };
 
+
 const update = async (req, res) => {
   try {
-    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const { name, price, description, category, image, stock } = req.body;
+    if (!name || !price || !description || !category || !image) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
+    const updatedProductData = { name, price, description, category, image };
+    if (stock !== undefined) updatedProductData.stock = stock;
+    const updated = await Product.findByIdAndUpdate(req.params.id, updatedProductData, { new: true });
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: 'Error al actualizar producto' });
