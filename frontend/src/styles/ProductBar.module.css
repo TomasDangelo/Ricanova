@@ -1,0 +1,82 @@
+.productBarNav {
+    position: sticky;
+    top: 4rem; /* Ajusta este valor para que coincida con la altura del Navbar */
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Asegura que esté debajo del Navbar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra para diferenciarlo */
+}
+
+.productBarItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.productBarLink {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+}
+
+.productBarLink:hover {
+    color: #0056b3;
+}
+
+.productBarLink::after {
+    content: '▼'; /* Flecha hacia abajo */
+    font-size: 12px;
+    color: #007bff;
+    transition: transform 0.3s ease;
+}
+
+.productBarItem:hover .productBarLink::after {
+    transform: rotate(180deg); /* Gira la flecha hacia arriba */
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%; 
+    left: -20%;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+    min-width: 200px; /* Asegura un ancho mínimo para el dropdown */
+}
+
+.productBarItem:hover .dropdown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdownItem {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdownItem:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}

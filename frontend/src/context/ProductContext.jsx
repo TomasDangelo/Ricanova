@@ -6,15 +6,37 @@ export const useProduct = () => useContext(ProductContext);
 
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(true);
+
+    const groupProductsByCategory = (products) => {
+        const categoriesMap = {};
+
+        products.forEach((product) => {
+            const categoryName = product.category;
+
+            if(!categoriesMap[categoryName]) {
+                categoriesMap[categoryName] = {
+                    name: categoryName,
+                    products: []
+                };
+            }
+            categoriesMap[categoryName].products.push({
+                id: product.id,
+                name: product.name
+            });
+        })
+        return Object.values(categoriesMap);
+    }
+
     const getProducts = async () => {
         try {
             const response = await axios.get("http://localhost:5000/api/products");
-            if (!response.ok) {
-                throw new Error("Error fetching products");
-            }
-            const data = await response.json();
+            const data = response.data;
             setProducts(data);
+
+            const grouped = groupProductsByCategory(data); //Genero las categorias ya agrupadas 
+            setCategories(grouped); 
             console.log("Products fetched successfully:", data);
             return data;
         } catch (error) {
@@ -30,7 +52,7 @@ export const ProductProvider = ({ children }) => {
     },[])
 
     return (
-        <ProductContext.Provider value={{ getProducts, products, loading }}>
+        <ProductContext.Provider value={{ getProducts, products, categories, loading }}>
             {children}
         </ProductContext.Provider>
     );

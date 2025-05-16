@@ -1,44 +1,56 @@
-.navbar{
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60px;
-    width: 100%;
-    z-index: 1000;
-    background-color: #2a2a2a;
-    margin-bottom: 2rem;;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que esté por encima del ProductBar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+  background-color: #e585ef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra para diferenciarlo */
 }
 
-.activeLink{
-    background-color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
-    &:hover{
-        color: #0909095d;
-    }
-}
-
-.link{
+.link, .activeLink {
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
     color: #fff;
     padding: 0.5rem 1rem;
-    transition: background-color 0.3s ease;
     border-radius: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
+    position: relative; 
+    overflow: hidden; 
+  }
+  
+  .activeLink {
+    background-color: #ffffff54;
+
+    transition: color 0.3s ease;
+  }
+  
+  .link::after, .activeLink::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%; 
+    height: 2px; 
+    background-color: currentColor; 
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .link:hover::after, .activeLink:hover::after {
+    width: 100%; 
+  }
 
 .navbarLogo{
     margin-right: auto;
     margin-left: 0.5rem;
+  }
+  .navbarLogoLink{
+    color: rgb(255, 255, 255);
 }
-
 .navbarNavLinks{
     display: flex;
     width: 100%;

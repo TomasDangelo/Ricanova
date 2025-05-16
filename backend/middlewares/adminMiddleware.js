@@ -1,5 +1,5 @@
-import User from '../models/User'
-import jwt from 'jsonwebtoken'
+const User = require('../models/User')
+const jwt = require('jsonwebtoken')
 
 
 const adminMiddleware = async (req, res, next) => {
@@ -23,4 +23,4 @@ const adminMiddleware = async (req, res, next) => {
     }
 }
 
-export default adminMiddleware
+module.exports = {adminMiddleware}

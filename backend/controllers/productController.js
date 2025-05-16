@@ -35,6 +35,36 @@ const create = async (req, res) => {
   }
 };
 
+const createMultiple = async (req, res) => {
+  try {
+    const productsData = req.body; 
+
+    if (!Array.isArray(productsData)) {
+      return res.status(400).json({ error: 'Se esperaba un array ' });
+    }
+
+    const createdProducts = [];
+    for (const productData of productsData) {
+      const { name, price, description, category, image, stock } = productData;
+
+      if (!name || !price || !description || !category || !image) {
+        return res.status(400).json({ error: 'Todos los campos son obligatorios para cada producto' });
+      }
+
+      const newProductData = { name, price, description, category, image };
+      if (stock !== undefined) newProductData.stock = stock;
+
+      const product = new Product(newProductData);
+      await product.save();
+      createdProducts.push(product);
+    }
+
+    res.status(201).json(createdProducts);
+  } catch (err) {
+    res.status(400).json({ error: 'Error al crear productos' });
+  }
+};
+
 
 const update = async (req, res) => {
   try {
@@ -66,4 +96,5 @@ module.exports = {
   create,
   update,
   delete: deleteProduct,
+  createMultiple
 };

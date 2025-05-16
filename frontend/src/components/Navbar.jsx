@@ -1,12 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from '../styles/Navbar.module.css';
-const Navbar = () => {
+import ProductBar from './ProductBar'
+import { useProduct } from '../context/ProductContext';
 
+const Navbar = () => {
+    const {categories} = useProduct();
     return (
+        <>
         <nav className={styles.navbar}>
             <div className={styles.navbarLogo}>
-                <NavLink to="/">RICANOVA</NavLink>
+                <NavLink className={styles.navbarLogoLink} to="/">RICANOVA</NavLink>
             </div>
             <div className={styles.navbarNavLinks} >
                 <NavLink to="/" className={({isActive}) => isActive? styles.activeLink : styles.link}>
@@ -25,7 +29,12 @@ const Navbar = () => {
                     Contacto
                 </NavLink>
             </div>
+            
+
         </nav>
+      <ProductBar categories={categories}/> 
+        
+        </>
     );
 };
 
