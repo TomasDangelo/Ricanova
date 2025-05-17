@@ -22,7 +22,7 @@ export const ProductProvider = ({ children }) => {
                 };
             }
             categoriesMap[categoryName].products.push({
-                id: product.id,
+                _id: product._id,
                 name: product.name
             });
         })

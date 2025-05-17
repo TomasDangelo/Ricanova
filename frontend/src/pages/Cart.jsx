@@ -3,27 +3,29 @@ import { useCart } from '../context/CartContext';
 import styles from '../styles/Cart.module.css';
 
 const Cart = () => {
-    const { cart, addToCart, removeFromCart, getTotal, clearCart, updateQuantity } = useCart();
+    const { cart, removeFromCart, getTotal, clearCart, updateQuantity } = useCart();
 
     return (
-        <div className={styles.cartContainer}>
+        <div>
             <h2>Revisa tu carrito</h2>
                 {cart.length === 0? (
                     <p>Tu carrito está vacío</p>
                 ): (
-                    <div>
-                    <ul>
+                    <div className={styles.cartContainer}>
+                    <ul className={styles.cartListContainer}>
                         {cart.map((item, index) => (
-                            <li key={index}>
-                                {item.name} - ${item.price} x {item.quantity}
-                                <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
-                                <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
-                                <button onClick={() => addToCart(item.id)}>-</button>
+                            <li key={index} className={styles.cartItemDetail}>
+                                {item.name}  <b>€{item.price} x {item.quantity}u.</b> 
+                                <button className={styles.cartBtns} onClick={() => removeFromCart(item._id)}>Eliminar</button>
+                                <div>
+                                <button className={styles.cartBtns} onClick={() => updateQuantity(item._id, item.quantity + 1)}>+</button>
+                                <button className={styles.cartBtns} onClick={() => updateQuantity(item._id, item.quantity - 1)}>-</button>
+                                </div>
                             </li>
                         ))}
                     </ul>
 
-                    <p>{getTotal()}</p>
+                    <p>€{getTotal()}</p>
                     <button onClick={clearCart}>Limpiar Carrito</button>
                     </div>
                 )}

@@ -7,8 +7,18 @@ export const useCart = () => useContext(CartContext);
 
 const cartReducer = (state, action) => {
     switch (action.type) {
-        case 'ADD_TO_CART':
+        case 'ADD_TO_CART': {
+            const existingProduct = state.find(item => item._id === action.payload._id);
+            if (existingProduct) { //Si lo encuentra, le suma la cantidad, y si no, lo devuelve como esta 
+            return state.map(item =>
+            item._id === action.payload._id
+                ? { ...item, quantity: item.quantity + action.payload.quantity }
+                : item
+            );
+            }
             return [...state, action.payload];
+        }
+
         case 'REMOVE_FROM_CART':
             return state.filter((item) => item._id !== action.payload);
         case 'CLEAR_CART':
@@ -47,8 +57,8 @@ export const CartProvider = ({ children }) => {
             console.error('Invalid product');
             return;
         }
-        dispatch({ type: 'ADD_TO_CART', payload: product });
-        sendNotification('Product added to cart');
+        dispatch({ type: 'ADD_TO_CART', payload: {...product, quantity: 1} });
+        sendNotification('Producto agregado al carrito exitosamente');
     }, []);
 
     const removeFromCart = useMemo(() => (id) => {
@@ -57,7 +67,6 @@ export const CartProvider = ({ children }) => {
             return;
         }
         dispatch({ type: 'REMOVE_FROM_CART', payload: id });
-        sendNotification('Product removed from cart');
     }, []);
 
     const clearCart = useMemo(() => () => {
@@ -71,17 +80,15 @@ export const CartProvider = ({ children }) => {
             return;
         }
         dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
-        sendNotification('Product quantity updated');
     }, []);
 
     const getTotal = useMemo(() => () => {
         const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-        sendNotification(`Total calculated: $${total}`);
         return total;
     }, [cart]);
 
     const sendNotification = (message) => {
-        console.log(message);
+        alert(message);
     };
 
     return (

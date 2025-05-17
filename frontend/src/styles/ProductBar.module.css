@@ -1,16 +1,16 @@
 .productBarNav {
     position: sticky;
-    top: 4rem; /* Ajusta este valor para que coincida con la altura del Navbar */
+    top: 4rem; 
     left: 0;
     width: 100%;
-    z-index: 999; /* Asegura que esté debajo del Navbar */
+    z-index: 999; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: #f8f9fa;
     border-bottom: 1px solid #dee2e6;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra para diferenciarlo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .productBarItem {
@@ -36,14 +36,14 @@
 }
 
 .productBarLink::after {
-    content: '▼'; /* Flecha hacia abajo */
+    content: '▼'; 
     font-size: 12px;
     color: #007bff;
     transition: transform 0.3s ease;
 }
 
 .productBarItem:hover .productBarLink::after {
-    transform: rotate(180deg); /* Gira la flecha hacia arriba */
+    transform: rotate(180deg); 
 }
 
 .dropdown {

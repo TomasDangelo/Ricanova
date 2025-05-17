@@ -4,13 +4,9 @@ import styles from '../styles/ProductBar.module.css';
 const ProductBar = ({ categories }) => {
     const [dropdownVisible, setDropdownVisible] = useState(null);
 
-    const handleMouseEnter = (category) => {
-        setDropdownVisible(category);
-    };
+    const handleMouseEnter = (category) => setDropdownVisible(category)
 
-    const handleMouseLeave = () => {
-        setDropdownVisible(null);
-    };
+    const handleMouseLeave = () => setDropdownVisible(null)
 
     return (
         <nav className={styles.productBarNav}>  
@@ -23,7 +19,7 @@ const ProductBar = ({ categories }) => {
                     {dropdownVisible === category.name && (
                         <div className={styles.dropdown} >
                             {category.products.map((product) => (
-                                <NavLink key={product.id} to={`/product/${product.id}`} className={styles.dropdownItem}>
+                                <NavLink key={product._id} to={`/products/${product._id}`} className={styles.dropdownItem}>
                                     {product.name}
                                 </NavLink>
                             ))}
