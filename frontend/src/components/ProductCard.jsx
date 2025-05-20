@@ -1,11 +1,12 @@
 import React from "react";
 import styles from '../styles/ProductCard.module.css'; 
-
+import { NavLink } from "react-router-dom";
 const ProductCard = ({ product, addToCart }) => {
     const { image, name, price, description, category } = product;
     
 
     return (
+        <NavLink to={`/products/${product._id}`}>
         <div className={styles.productCard}>
             <div className={styles.imageContainer}>
                 <img src={image} alt={name} className={styles.productImage} />
@@ -22,6 +23,7 @@ const ProductCard = ({ product, addToCart }) => {
                 </div>
             </div>
         </div>
+        </NavLink>
     );
 };
 

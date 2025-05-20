@@ -22,7 +22,7 @@ const Home = () => {
             <h1 className={styles.homeTitle}>Bienvenido a Ricanova</h1>
             <p className={styles.productText}>Explora nuestra selección de coches de bebé de alta calidad.</p>
             <div className={styles.buttonGroup}>
-                <button className={styles.primaryButton} onClick={() => navigate('/products')}> <p className={styles.verBtnText}>Ver Productos</p></button>
+                <button className={styles.primaryButton} onClick={() => navigate('/products')}> Ver Productos</button>
                 <button className={styles.secondaryButton} onClick={() => navigate('/login')}>Iniciar Sesión</button>
             </div>
             <Carousel images={images}/>

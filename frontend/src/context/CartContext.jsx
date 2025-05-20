@@ -36,20 +36,25 @@ const cartReducer = (state, action) => {
         default:
             return state;
     }
-};
+}
+
+const initialCart = () => {
+    const storedCart = localStorage.getItem('cart');
+    return storedCart? JSON.parse(storedCart) : []; 
+}
 
 export const CartProvider = ({ children }) => {
-    const [cart, dispatch] = useReducer(cartReducer, []);
+    const [cart, dispatch] = useReducer(cartReducer, initialCart());
 
     useEffect(() => {
-        const storedCart = sessionStorage.getItem('cart');
+        const storedCart = localStorage.getItem('cart');
         if (storedCart) {
             dispatch({ type: 'LOAD_CART', payload: JSON.parse(storedCart) });
         }
     }, []);
 
     useEffect(() => {
-        sessionStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
     const addToCart = useMemo(() => (product) => {
@@ -71,7 +76,7 @@ export const CartProvider = ({ children }) => {
 
     const clearCart = useMemo(() => () => {
         dispatch({ type: 'CLEAR_CART' });
-        sendNotification('Cart cleared');
+        sendNotification('Carrito limpiado exitosamente');
     }, []);
 
     const updateQuantity = useMemo(() => (id, quantity) => {

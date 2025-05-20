@@ -37,36 +37,14 @@
     transition: background-color 0.3s ease;
 }
 
-.verBtnText::before {
+.primaryButton::before {
     content: '▶';
     font-size: 12px;
-    margin: 0.3rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.3 ease-in-out;
 }
 
-.verBtnText:hover {
-animation: moveText 1s ease-in-out;
-}
-
-.primaryButton:hover .verBtnText::before {
+.buttonGroup:hover .primaryButton::before {
     transform: rotate(180deg);
-}
-@keyframes moveText {
-    0% {
-        transform: translateX(0px);
-    }
-    25%{
-        transform: translateX(2px);
-    }
-    50% {
-        transform: translateX(5px);
-    }
-    75% {
-        transform: translateX(7px);
-    }
-    100% {
-        transform: translateX(0px);
-    }
 }
 
 .secondaryButton {

@@ -32,7 +32,7 @@ const ProductDetail = () => {
                     <h1 className={styles.productName}>{product.name}</h1>
                     <p className={styles.productCategory}>Categoría: {product.category}</p>
                     <p className={styles.productDescription}>{product.description}</p>
-                    <p className={styles.productPrice}>Precio: <b>${product.price}</b></p>
+                    <p className={styles.productPrice}>Precio: <b>€{product.price}</b></p>
                     <p className={styles.productStock}>
                         {product.stock > 0 ? `Stock disponible: ${product.stock}` : <span className={styles.outOfStock}>Sin stock</span>}
                     </p>
@@ -45,11 +45,11 @@ const ProductDetail = () => {
                 <h2>Otros usuarios también compraron...</h2>
                 <div className={styles.recommendedGrid}>
                     {recommended.map((rec) => (
-                        <div key={rec._id || rec.id} className={styles.recommendedCard} onClick={() => navigate(`/products/${rec._id || rec.id}`)} >
+                        <div key={rec._id || rec.id} className={styles.recommendedCard} onClick={() => navigate(`/products/${rec._id}`)} >
                             <img src={rec.image} alt={rec.name} className={styles.recommendedImg} />
                             <div className={styles.recommendedInfo}>
                                 <span className={styles.recName}>{rec.name}</span>
-                                <span className={styles.recPrice}>${rec.price}</span>
+                                <span className={styles.recPrice}>€{rec.price}</span>
                             </div>
                         </div>
                     ))}
