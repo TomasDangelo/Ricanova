@@ -3,57 +3,88 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Asegura que esté por encima del ProductBar */
+  z-index: 1000;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  min-height: 60px;
-  background-color: #e585ef;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra para diferenciarlo */
+  padding: 0.75rem 2.5rem;
+  background-color: #f8fafc; 
+  border-bottom: 1px solid #e7eff3;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #1c2e35;
+}
+
+.logoIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #1c2e35;
+}
+
+.brandText {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: #1c2e35;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbarNavLinks {
+  display: flex;
+  gap: 2.25rem;
 }
 
 .link, .activeLink {
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    position: relative; 
-    overflow: hidden; 
-  }
-  
-  .activeLink {
-    background-color: #ffffff54;
-
-    transition: color 0.3s ease;
-  }
-  
-  .link::after, .activeLink::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%; 
-    height: 2px; 
-    background-color: currentColor; 
-    transition: width 0.3s ease-in-out;
-  }
-  
-  .link:hover::after, .activeLink:hover::after {
-    width: 100%; 
-  }
-
-.navbarLogo{
-    margin-right: auto;
-    margin-left: 0.5rem;
-  }
-  .navbarLogoLink{
-    color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0e171b;
+  padding: 0.25rem;
+  position: relative;
 }
-.navbarNavLinks{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    gap: 0.3rem;
+
+.activeLink {
+  font-weight: 1000;
+}
+
+.link::after, .activeLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+
+.link:hover::after, .activeLink:hover::after {
+  width: 100%;
+}
+
+.shopButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 1rem;
+  background-color: #47b4ea;
+  color: #0e171b;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+  min-width: 84px;
+  max-width: 480px;
+  cursor: pointer;
+  overflow: hidden;
 }
