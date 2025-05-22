@@ -22,7 +22,7 @@
 
 .productBarLink {
     text-decoration: none;
-    color: #007bff;
+    color: var(--primary-color);
     font-size: 16px;
     font-weight: 500;
     display: flex;

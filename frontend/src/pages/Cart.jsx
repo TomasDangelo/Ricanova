@@ -2,10 +2,12 @@ import React from 'react';
 import { useCart } from '../context/CartContext';
 import styles from '../styles/Cart.module.css';
 import { MdDelete } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const { cart, removeFromCart, getTotal, clearCart, updateQuantity } = useCart();
-
+    const navigate = useNavigate();
+    
     const handleQuantityChange = (item, e) => {
         const value = parseInt(e.target.value, 10);
         if (value > 0) {
@@ -29,8 +31,9 @@ const Cart = () => {
                             </li>
                         ))}
                     </ul>
-                    <p>€{getTotal()}</p>
+                    <p><b>Total: €{getTotal()}</b> </p>
                     <button className={styles.clearCartBtn} onClick={clearCart}>Limpiar Carrito</button>
+                    <button className={styles.clearCartBtn} onClick={() => navigate('/checkout')}>Finalizar compra</button>
                 </div>
             )}
         </div>

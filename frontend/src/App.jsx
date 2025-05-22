@@ -2,10 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
+import Checkout from './pages/Checkout'
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
+import About from './pages/About'
 import ProductDetail from './pages/ProductDetail';
 import { CartProvider } from './context/CartContext';
 import { ProductProvider } from './context/ProductContext';
@@ -25,6 +26,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About/>}/>
               <Route path="/login" element={<Login />} />
               <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
             </Routes>
