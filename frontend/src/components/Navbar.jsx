@@ -7,6 +7,10 @@ import { useProduct } from '../context/ProductContext';
 const Navbar = () => {
   const { categories } = useProduct();
 
+const [menuOpen, setMenuOpen] = React.useState(false);
+const handleMenuToggle = () => setMenuOpen((open) => !open);
+const handleLinkClick = () => setMenuOpen(false);
+
 return (
     <>
         <nav className={styles.navbar}>
@@ -26,14 +30,26 @@ return (
                 </NavLink>
             </div>
 
-            <div className={styles.rightSection}>
+            <button
+                className={styles.hamburger}
+                aria-label="Abrir menú"
+                aria-expanded={menuOpen}
+                onClick={handleMenuToggle}
+                type="button"
+            >
+                <span className={styles.hamburgerBar}></span>
+                <span className={styles.hamburgerBar}></span>
+                <span className={styles.hamburgerBar}></span>
+            </button>
+
+            <div className={`${styles.rightSection} ${menuOpen ? styles.menuOpen : ''}`}>
                 <div className={styles.navbarNavLinks}>
-                    <NavLink to="/" className={({ isActive }) => isActive ? styles.activeLink : styles.link}>Inicio</NavLink>
-                    <NavLink to="/cart" className={({ isActive }) => isActive ? styles.activeLink : styles.link}>Carrito</NavLink>
-                    <NavLink to="/about" className={({ isActive }) => isActive ? styles.activeLink : styles.link}>Sobre nosotros</NavLink>
-                    <NavLink to="/contact" className={({ isActive }) => isActive ? styles.activeLink : styles.link}>Contacto</NavLink>
+                    <NavLink to="/" className={({ isActive }) => isActive ? styles.activeLink : styles.link} onClick={handleLinkClick}>Inicio</NavLink>
+                    <NavLink to="/cart" className={({ isActive }) => isActive ? styles.activeLink : styles.link} onClick={handleLinkClick}>Carrito</NavLink>
+                    <NavLink to="/about" className={({ isActive }) => isActive ? styles.activeLink : styles.link} onClick={handleLinkClick}>Sobre nosotros</NavLink>
+                    <NavLink to="/contact" className={({ isActive }) => isActive ? styles.activeLink : styles.link} onClick={handleLinkClick}>Contacto</NavLink>
                 </div>
-                <NavLink to="/products" className={({ isActive }) => `${styles.shopButton} ${isActive ? styles.activeLink : ''}` } >
+                <NavLink to="/products" className={({ isActive }) => `${styles.shopButton} ${isActive ? styles.activeLink : ''}` } onClick={handleLinkClick}>
                     Compra ahora
                 </NavLink>
             </div>

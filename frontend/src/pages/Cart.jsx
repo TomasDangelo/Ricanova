@@ -33,7 +33,7 @@ const Cart = () => {
                     </ul>
                     <p><b>Total: €{getTotal()}</b> </p>
                     <button className={styles.clearCartBtn} onClick={clearCart}>Limpiar Carrito</button>
-                    <button className={styles.clearCartBtn} onClick={() => navigate('/checkout')}>Finalizar compra</button>
+                    <button className={styles.purchaseBtn} onClick={() => navigate('/checkout')}>Finalizar compra</button>
                 </div>
             )}
         </div>

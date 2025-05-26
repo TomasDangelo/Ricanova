@@ -38,7 +38,11 @@
 .clearCartBtn{
     background-color: royalblue;
 }
+.purchaseBtn{
+   background-color: #1dcd9b;
+   margin: 1rem;
 
+}
 .cartRemoveBtn{
    background-color: #ed5151;
 }
