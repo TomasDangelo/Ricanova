@@ -4,6 +4,8 @@ import axios from "../services/api";
 const ProductContext = createContext();
 export const useProduct = () => useContext(ProductContext);
 
+const apiUrl = import.meta.env.RENDER_URL || import.meta.env.VITE_API_URL ;
+
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([])
@@ -31,7 +33,7 @@ export const ProductProvider = ({ children }) => {
 
     const getProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/products");
+            const response = await axios.get(`${apiUrl}/products`);
             const data = response.data;
             setProducts(data);
 
