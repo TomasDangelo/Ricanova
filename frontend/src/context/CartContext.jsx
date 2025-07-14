@@ -74,9 +74,11 @@ export const CartProvider = ({ children }) => {
         dispatch({ type: 'REMOVE_FROM_CART', payload: id });
     }, []);
 
-    const clearCart = useMemo(() => () => {
+    const clearCart = useMemo(() => (showNotification = true) => {
         dispatch({ type: 'CLEAR_CART' });
-        sendNotification('Carrito limpiado exitosamente');
+        if (showNotification) {
+            sendNotification('Carrito limpiado exitosamente');
+        }
     }, []);
 
     const updateQuantity = useMemo(() => (id, quantity) => {
